@@ -1,0 +1,326 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.card-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0f1a;
+  padding: 16px;
+  font-family: 'Segoe UI', -apple-system, sans-serif;
+}
+
+.digital-card {
+  max-width: 380px;
+  width: 100%;
+  background: #0D1B2A;
+  border-radius: 24px;
+  padding: 28px 20px 20px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Brilho topo */
+.top-glow {
+  position: absolute;
+  top: -1px;
+  left: 8%;
+  right: 8%;
+  height: 2.5px;
+  background: linear-gradient(90deg, transparent, #E8A317, #FFD700, #E8A317, transparent);
+  box-shadow: 0 0 15px rgba(232, 163, 23, 0.6), 0 0 30px rgba(232, 163, 23, 0.3);
+  border-radius: 2px;
+  z-index: 5;
+}
+
+/* ===== LOGO ===== */
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.logo-svg {
+  width: 36px;
+  height: 46px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  text-align: left;
+}
+
+.logo-text h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0;
+}
+
+.logo-text span {
+  font-size: 9px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.logo-text small {
+  font-size: 8px;
+  color: #E8A317;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-top: 1px;
+}
+
+/* ===== FOTO COM ANEL GIRATÓRIO ===== */
+
+/* Container externo - segura o brilho e a borda */
+.photo-outer {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 16px;
+  position: relative;
+  overflow: visible;
+}
+
+/* Borda fixa dourada */
+.photo-outer::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(232, 163, 23, 0.35);
+  box-shadow: inset 0 0 12px rgba(232, 163, 23, 0.15), 0 0 8px rgba(232, 163, 23, 0.2);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Anel giratório */
+.glow-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  z-index: 1;
+  background: conic-gradient(
+    transparent 0deg,
+    rgba(232, 163, 23, 0.1) 60deg,
+    rgba(232, 163, 23, 0.6) 110deg,
+    rgba(255, 215, 0, 0.9) 140deg,
+    rgba(232, 163, 23, 0.6) 170deg,
+    transparent 200deg,
+    transparent 360deg
+  );
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  animation: glowSpin 2.5s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes glowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Wrapper interno - corta a imagem dentro do círculo */
+.photo-wrapper {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+}
+
+/* Imagem com zoom interno - NÃO mexe no círculo */
+.photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  border-radius: 50%;
+  transform: scale(1.5);
+  transform-origin: center center;
+}
+
+/* ===== TEXTO ===== */
+.name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 2px;
+}
+
+.title {
+  font-size: 13px;
+  color: #E8A317;
+  margin: 0 0 14px;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 163, 23, 0.25), transparent);
+  margin: 0 50px 12px;
+}
+
+.location {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin: 0 0 18px;
+}
+
+/* ===== BOTÕES ===== */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.07);
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+
+.btn.whatsapp {
+  border-color: rgba(37,211,102,0.3);
+  background: rgba(37,211,102,0.08);
+}
+.btn.whatsapp:hover { background: rgba(37,211,102,0.15); }
+.btn.whatsapp svg { fill: #25D366; }
+
+.btn.call {
+  border-color: rgba(52,183,241,0.3);
+  background: rgba(52,183,241,0.08);
+}
+.btn.call:hover { background: rgba(52,183,241,0.15); }
+.btn.call svg { fill: #34B7F1; }
+
+.btn.site {
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+}
+.btn.site:hover { background: rgba(255,255,255,0.07); }
+.btn.site svg { fill: #fff; }
+
+.btn.instagram {
+  border-color: rgba(228,64,95,0.3);
+  background: rgba(228,64,95,0.08);
+}
+.btn.instagram:hover { background: rgba(228,64,95,0.15); }
+.btn.instagram svg { fill: #E4405F; }
+
+.btn.email {
+  border-color: rgba(108,99,255,0.3);
+  background: rgba(108,99,255,0.08);
+}
+.btn.email:hover { background: rgba(108,99,255,0.15); }
+.btn.email svg { fill: #6C63FF; }
+
+/* ===== FOOTER ===== */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(232, 163, 23, 0.12);
+}
+
+.footer-svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.footer .ft-text {
+  text-align: left;
+}
+
+.footer .ft-text strong {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 700;
+}
+
+.footer .ft-text small {
+  font-size: 7px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 1.5px;
+  display: block;
+}
+
+.footer .ft-text span {
+  font-size: 7px;
+  color: #E8A317;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 480px) {
+  .card-container { padding: 10px; }
+  .digital-card { max-width: 100%; padding: 22px 16px 16px; border-radius: 20px; }
+  .logo-svg { width: 30px; height: 38px; }
+  .logo-text h1 { font-size: 17px; }
+  .logo-text span { font-size: 8px; }
+  .logo-text small { font-size: 7px; }
+  .photo-outer { width: 110px; height: 110px; }
+  .photo-wrapper { width: 110px; height: 110px; }
+  .name { font-size: 17px; }
+  .title { font-size: 12px; }
+  .btn { padding: 10px 14px; font-size: 13px; }
+  .btn svg { width: 18px; height: 18px; }
+  .footer-svg { width: 24px; height: 24px; }
+}
+
+@media (max-width: 360px) {
+  .digital-card { padding: 18px 12px 12px; }
+  .logo-svg { width: 26px; height: 32px; }
+  .logo-wrapper { gap: 8px; margin-bottom: 18px; }
+  .logo-text h1 { font-size: 15px; }
+  .photo-outer { width: 95px; height: 95px; }
+  .photo-wrapper { width: 95px; height: 95px; }
+  .name { font-size: 15px; }
+  .btn { padding: 9px 10px; font-size: 12px; border-radius: 10px; }
+  .footer-svg { width: 20px; height: 20px; }
+}

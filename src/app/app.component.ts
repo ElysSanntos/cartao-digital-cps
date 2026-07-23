@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
+import { CartaoComponent } from './cartao/cartao.component';
+
 @Component({
   selector: 'app-root',
-  imports: [],
+  standalone: true,
+  imports: [CartaoComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'cartao-digital-cps';
-}
+export class AppComponent { }
